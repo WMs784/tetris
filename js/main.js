@@ -57,7 +57,7 @@ var blocks = {
 loadTable();
 setInterval(function () {
   count++;
-  document.getElementById("high_score").textContent = "High Score: " + Math.max.apply(null, scores);
+  // document.getElementById("high_score").textContent = "High Score: " + Math.max.apply(null, scores);
   // ブロックが積み上がり切っていないかのチェック
   for (var row = 0; row < 2; row++) {
     for (var col = 0; col < 10; col++) {
@@ -87,6 +87,8 @@ function onKeyDown(event) {
     moveLeft();
   } else if (event.keyCode === 39) {
     moveRight();
+  } else if (event.keyCode === 40) {
+    quickFall();
   } else if (event.keyCode === 82) {
     location.reload();
   } else if (event.keyCode === 83) {
@@ -236,6 +238,42 @@ function moveLeft() {
         cells[row][col - 1].blockNum = cells[row][col].blockNum;
         cells[row][col].className = "";
         cells[row][col].blockNum = null;
+      }
+    }
+  }
+}
+
+function quickFall() {
+  // ブロックを一番下まで落とす
+  isFalling = true;
+  while (isFalling) {
+    // 1. 底についていないか？
+    for (var col = 0; col < 10; col++) {
+      if (cells[19][col].blockNum === fallingBlockNum) {
+        isFalling = false;
+        return; // 一番下の行にブロックがいるので落とさない
+      }
+    }
+    // 2. 1マス下に別のブロックがないか？
+    for (var row = 18; row >= 0; row--) {
+      for (var col = 0; col < 10; col++) {
+        if (cells[row][col].blockNum === fallingBlockNum) {
+          if (cells[row + 1][col].className !== "" && cells[row + 1][col].blockNum !== fallingBlockNum){
+            isFalling = false;
+            return; // 一つ下のマスにブロックがいるので落とさない
+          }
+        }
+      }
+    }
+    // 下から二番目の行から繰り返しクラスを下げていく
+    for (var row = 18; row >= 0; row--) {
+      for (var col = 0; col < 10; col++) {
+        if (cells[row][col].blockNum === fallingBlockNum) {
+          cells[row + 1][col].className = cells[row][col].className;
+          cells[row + 1][col].blockNum = cells[row][col].blockNum;
+          cells[row][col].className = "";
+          cells[row][col].blockNum = null;
+        }
       }
     }
   }
