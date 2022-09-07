@@ -58,20 +58,20 @@ loadTable();
 setInterval(function () {
   count++;
   // document.getElementById("high_score").textContent = "High Score: " + Math.max.apply(null, scores);
-  // ブロックが積み上がり切っていないかのチェック
-  for (var row = 0; row < 2; row++) {
-    for (var col = 0; col < 10; col++) {
-      if (cells[row][col].className !== "" && cells[row][col].blockNum !== fallingBlockNum && !alert_flag) {
-        alert("game over\nyou stacked " + fallingBlockNum + " tetrominos");
-        cells[row][col].className = "gameover";
-        location.reload();
-        alert_flag = true;
-        scores.push(fallingBlockNum);
-      }
-    }
-  }
   if (hasFallingBlock()) { // 落下中のブロックがあるか確認する
     fallBlocks();// あればブロックを落とす
+    // ブロックが積み上がり切っていないかのチェック
+    for (var row = 0; row < 2; row++) {
+      for (var col = 0; col < 10; col++) {
+        if (cells[row][col].className !== "" && cells[row][col].blockNum !== fallingBlockNum && !alert_flag) {
+          alert("game over\nyou stacked " + fallingBlockNum + " tetrominos");
+          cells[row][col].className = "gameover";
+          location.reload();
+          alert_flag = true;
+          scores.push(fallingBlockNum);
+        }
+      }
+    }
   } else { // なければ
     deleteRow();// そろっている行を消す
     generateBlock();// ランダムにブロックを作成する
