@@ -211,6 +211,8 @@ function moveRight() {
         }
       }
     }
+  }
+  for (var col = 9; col >= 0; col--) {
     for (var row = 0; row < 20; row++) {
       if (cells[row][col].blockNum === fallingBlockNum && cells[row][col + 1].className === "") {
         cells[row][col + 1].className = cells[row][col].className;
@@ -232,6 +234,8 @@ function moveLeft() {
         }
       }
     }
+  }
+  for (var col = 0; col < 10; col++) {
     for (var row = 0; row < 20; row++) {
       if (cells[row][col].blockNum === fallingBlockNum && cells[row][col - 1].className === "") {
         cells[row][col - 1].className = cells[row][col].className;
