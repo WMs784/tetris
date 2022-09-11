@@ -70,7 +70,7 @@ function onKeyDown(event) {
     moveRight();
   } else if (event.keyCode === 40) {
     quickFall();
-  } else if (event.keyCode === 82) {
+  } else if (event.keyCode === 81) {
     location.reload();
   } else if (event.keyCode === 32) {
     document.getElementById("description").textContent = "";

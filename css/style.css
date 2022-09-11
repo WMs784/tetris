@@ -3,7 +3,9 @@ body {
 }
 h1 {
   color: #FFFFFF;
-  margin-left: 20px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 0px;
 }
 h2 {
   color: #FFFFFF;
@@ -11,23 +13,44 @@ h2 {
   margin-right: auto;
   text-align: center;
 }
+a{
+  color: #FFFFFF;
+  margin-top: 0px;
+}
 table {
-  width: 350; /* 表の幅 */
-  min-width: 350px;
-  height: 700px; /* 表の高さ */
+  width: 330; /* 表の幅 */
+  min-width: 340px;
+  height: 660px; /* 表の高さ */
   /* 中央揃えにする */
   margin-left: auto;
   margin-right: auto;
 }
 div {
   text-align: center;
-  display: flex;
+  /* display: flex; */
   color: #FFFFFF;
 }
 
 p {
   color: #FFFFFF;
-  margin: 100px;
+}
+
+ul {
+  list-style: none;
+  padding: 20px 50px;
+  display: inline-block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border: #FFFFFF;
+  border-style: solid;
+}
+
+li {
+  color: #FFFFFF;
+  font-size: x-large;
+  text-align: left;
+  margin: 20px;
 }
 
 td {
@@ -62,4 +85,32 @@ td {
 
 .l {
   background-color: #FF9800; /* orange */
+}
+
+.blink {
+	animation: blinking 1s ease-in-out infinite alternate;
+}
+ 
+@keyframes blinking {
+	0% {opacity: 0.1;}
+	100% {opacity: 1;}
+}
+
+/* .link-rules {
+  font-size:  x-large;
+  text-align: right;
+  margin: 50px;
+} */
+
+.main-text {
+  text-align: center;
+  margin: 0px;
+}
+
+/* ↓rules.html */
+.rules {
+  color: #FFFFFF;
+  margin-left: 400px;
+  margin-right: auto;
+  text-align: center;
 }
