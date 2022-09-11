@@ -54,8 +54,47 @@ var blocks = {
     }
   };
 
-loadTable();
-setInterval(function () {
+
+document.getElementById("description").textContent = "Press Space to Start!";
+// loadTable();
+// setInterval(tetris, 500);
+
+// キーボードイベントを監視する
+document.addEventListener("keydown", onKeyDown);
+
+// キー入力によってそれぞれの関数を呼び出す
+function onKeyDown(event) {
+  if (event.keyCode === 37) {
+    moveLeft();
+  } else if (event.keyCode === 39) {
+    moveRight();
+  } else if (event.keyCode === 40) {
+    quickFall();
+  } else if (event.keyCode === 82) {
+    location.reload();
+  } else if (event.keyCode === 32) {
+    document.getElementById("description").textContent = "";
+    loadTable();
+    setInterval(tetris, 500);
+  }
+}
+
+/* ------ ここから下は関数の宣言部分 ------ */
+
+function loadTable() {
+  cells = [];
+  var td_array = document.getElementsByTagName("td");
+  var index = 0;
+  for (var row = 0; row < 20; row++) {
+    cells[row] = [];
+    for (var col = 0; col < 10; col++) {
+      cells[row][col] = td_array[index];
+      index++;
+    }
+  }
+}
+
+function tetris() {
   count++;
   // document.getElementById("high_score").textContent = "High Score: " + Math.max.apply(null, scores);
   if (hasFallingBlock()) { // 落下中のブロックがあるか確認する
@@ -76,41 +115,7 @@ setInterval(function () {
     deleteRow();// そろっている行を消す
     generateBlock();// ランダムにブロックを作成する
   }
-}, 500);
-
-// キーボードイベントを監視する
-document.addEventListener("keydown", onKeyDown);
-
-// キー入力によってそれぞれの関数を呼び出す
-function onKeyDown(event) {
-  if (event.keyCode === 37) {
-    moveLeft();
-  } else if (event.keyCode === 39) {
-    moveRight();
-  } else if (event.keyCode === 40) {
-    quickFall();
-  } else if (event.keyCode === 82) {
-    location.reload();
-  } else if (event.keyCode === 83) {
-    // setInterval(tetris, 500);
-  }
 }
-
-/* ------ ここから下は関数の宣言部分 ------ */
-
-function loadTable() {
-  cells = [];
-  var td_array = document.getElementsByTagName("td");
-  var index = 0;
-  for (var row = 0; row < 20; row++) {
-    cells[row] = [];
-    for (var col = 0; col < 10; col++) {
-      cells[row][col] = td_array[index];
-      index++;
-    }
-  }
-}
-
 
 function fallBlocks() {
   // 1. 底についていないか？

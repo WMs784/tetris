@@ -5,6 +5,12 @@ h1 {
   color: #FFFFFF;
   margin-left: 20px;
 }
+h2 {
+  color: #FFFFFF;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 table {
   width: 350; /* 表の幅 */
   min-width: 350px;
